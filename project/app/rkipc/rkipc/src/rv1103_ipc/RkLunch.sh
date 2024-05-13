@@ -45,6 +45,12 @@ network_init()
 		echo $ethaddr1 > /data/ethaddr.txt
 	fi
 	ifconfig eth0 up && udhcpc -i eth0
+	sleep 2
+	ifconfig eth0 192.168.0.2
+	sleep 2s
+	echo "add:route add default gw 192.168.0.1"
+	echo "nameserver 8.8.8.8" > /etc/resolv.conf
+	echo "nameserver 114.114.114.114" > /etc/resolv.conf
 }
 
 post_chk()
